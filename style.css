@@ -1,0 +1,39 @@
+:root
+{
+    --kolor: #ccc
+}
+body
+{
+    background-color: #303430;
+    color: var(--kolor);
+}
+#plansza
+{
+    width: 606px;
+    margin-right: auto;
+    margin-left: auto;
+    font-size: 150px;
+    text-align: center;
+    line-height: 200px;
+}
+.pole
+{
+    width: 200px;
+    height: 200px;
+    border: 1px var(--kolor) solid;
+    float: left;
+}
+.pole:hover
+{
+    cursor: pointer;
+    background-color: #404440;
+}
+.break
+{
+    clear: both;
+}
+.nonactiv:hover
+{
+    background-color: transparent;
+    cursor: default;
+}
