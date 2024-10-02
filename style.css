@@ -4,6 +4,7 @@
     padding: 10px;
     display: flex;
     flex-wrap: wrap;
+    gap: 50px;
 }
 
 #notes
@@ -11,7 +12,6 @@
     background-color: #B2CB37;
     text-align: center;
     padding: 10px;
-    margin: 8px;
     width: 250px;
 }
 
