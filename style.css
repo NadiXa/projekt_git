@@ -1,0 +1,23 @@
+#container
+{
+    background-color: #373737;
+    padding: 10px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+#notes
+{
+    background-color: #B2CB37;
+    text-align: center;
+    padding: 10px;
+    margin: 8px;
+    width: 250px;
+}
+
+h1
+{
+    text-align: center;
+    background-color: #2E3130;
+    padding: 10px;
+}
