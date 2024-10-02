@@ -1,14 +1,14 @@
 let tura = 1;
 let pola = new Array(3);
-for(let i=0; i<pola.lenght; i++)
+for(let i=0; i<pola.length; i++)
 {
-    pola[i] = new Array();
+    pola[i] = new Array(3);
 }
-for(let i=0;i<pola.lenght;i++)
+for(let i=0;i<pola.length;i++)
 {
-    for(let j=0;j<pola.lenght;j++)
+    for(let j=0;j<pola.length;j++)
     {
-        pola[i][j] = document.querySelector()
+        pola[i][j] = document.querySelector(id)
     }
 }
 function klik(id)
@@ -28,7 +28,7 @@ function klik(id)
         element.classList.add("nonactiv");
         tura++
     }
-    if(pola[0][0] == pola[0][1] && pola[0][1] == pola[0][2])
+    if(pola[0][0].innerHTML == pola[0][1].innerHTML && pola[0][1].innerHTML == pola[0][2].innerHTML && pola[0][0].innerHTML != "")
     {
         console.log("wygrales")
     }
