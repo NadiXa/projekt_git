@@ -7,12 +7,13 @@
     gap: 50px;
 }
 
-#notes
+.notes
 {
     background-color: #B2CB37;
     text-align: center;
     padding: 10px;
-    width: 250px;
+    max-width: 250px;
+    box-shadow: 10px 10px 5px;
 }
 
 h1
@@ -20,4 +21,14 @@ h1
     text-align: center;
     background-color: #2E3130;
     padding: 10px;
+}
+
+#n2, #n4
+{
+    width: 100px;
+}
+
+#n3, #n5
+{
+    width: 150px;
 }
