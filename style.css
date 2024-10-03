@@ -18,11 +18,13 @@
     box-shadow: 10px 10px 5px ;
 }
 
-h1
+header
 {
     text-align: center;
     background-color: #2E3130;
     padding: 10px;
+    position: sticky;
+    top: 0;
 }
 
 #n2, #n4
