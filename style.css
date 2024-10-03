@@ -6,7 +6,9 @@
     flex-wrap: wrap;
     gap: 50px;
     align-items: center;
-    justify-content: space-evenly;
+    /* align-content: stretch; */
+    justify-content: space-around;
+    /* justify-items: center; */
 }
 
 .notes
