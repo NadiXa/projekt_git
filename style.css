@@ -2,9 +2,11 @@ body
 {
     color: #121110;
     background-color: #121110;
+    margin: 0;
+    height: 100vh;
 }
 
-.container
+.notes-container
 {
     background-color: #373737;
     padding: 10px;
@@ -17,7 +19,7 @@ body
     /* justify-items: center; */
 }
 
-.notes
+.note
 {
     background-color: #B2CB37;
     text-align: center;
@@ -77,6 +79,8 @@ header
     position: fixed;
     right: 10px;
     bottom: 10px;
+    cursor: pointer;
+    color: blue;
 }
 
 footer
