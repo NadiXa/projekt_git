@@ -80,7 +80,18 @@ header
     right: 10px;
     bottom: 10px;
     cursor: pointer;
-    color: blue;
+    color: #121110;
+}
+
+#color-button
+{
+    background-color: grey;
+    border-radius: 10%;
+    position: fixed;
+    right: 70px;
+    bottom: 10px;
+    cursor: pointer;
+    color: #121110;
 }
 
 footer
