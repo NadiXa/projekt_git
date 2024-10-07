@@ -10,7 +10,9 @@ function addDot()
     {
         newDot = document.createElement('div');
         newDot.classList.add('big-red-dot');
+        newDot.id = `newDot-${index}`
         document.getElementById('kw').appendChild(newDot);
+        index++;
     }
 }
 
