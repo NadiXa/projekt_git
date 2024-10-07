@@ -1,10 +1,10 @@
-const kw = document.getElementById('kw');
+const dotContainer = document.getElementById('dot-container');
 
 function clearDots()
 {
-    while(kw.firstChild != null)
+    while(dotContainer.firstChild != null)
     {
-        kw.removeChild(kw.firstChild);
+        dotContainer.removeChild(dotContainer.firstChild);
     }
 }
 
@@ -23,21 +23,34 @@ function addDot()
         newDot.id = `newDot-${i}`;
         newDot.textContent = i;
 
-        const button = document.createElement('button');
-        button.textContent = "Usuń";
-        button.id = 'delete-button';
-        button.onclick = () => {
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = "Usuń";
+        deleteButton.id = 'delete-button';
+        deleteButton.onclick = () => 
+        {
             const bigDot = document.getElementById(`newDot-${i}`);
-            kw.removeChild(bigDot);
+            dotContainer.removeChild(bigDot);
         }
-        newDot.appendChild(button);
-        kw.appendChild(newDot);
+
+        const colorButton = document.createElement('button');
+        colorButton.textContent = "Pokoloruj";
+        colorButton.id = 'color-button';
+        colorButton.onclick = () => 
+        {
+            const bigDot = document.getElementById(`newDot-${i}`);
+            bigDot.style.backgroundColor = 'blue';
+            bigDot.textContent = "BIG RED DOT";
+        }
+
+        newDot.appendChild(deleteButton);
+        newDot.appendChild(colorButton);
+        dotContainer.appendChild(newDot);
     }
 }
 
-function changeColor() 
-{
-    const bigDot = document.querySelector('.big-red-dot');
-    bigDot.style.backgroundColor = 'blue';
-    bigDot.textContent = "BIG RED DOT";
-}
+// function changeColor() 
+// {
+//     const bigDot = document.querySelector('.big-red-dot');
+//     bigDot.style.backgroundColor = 'blue';
+//     bigDot.textContent = "BIG RED DOT";
+// }
