@@ -13,6 +13,7 @@ function addDot()
         newDot.id = `newDot-${index}`
         document.getElementById('kw').appendChild(newDot);
         index++;
+        newDot.textContent = index;
     }
 }
 
