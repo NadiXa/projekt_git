@@ -4,9 +4,9 @@ function addDot()
 {
     const min = 1;
     const max = 10;
-    const liczba = Math.floor(Math.random() * (max - min + 1)) + min;
+    const numberOfElementsToAdd = Math.floor(Math.random() * (max - min + 1)) + min;
 
-    for(let i=0; i<liczba; i++)
+    for(let i=0; i<numberOfElementsToAdd; i++)
     {
         newDot = document.createElement('div');
         newDot.classList.add('big-red-dot');
@@ -14,6 +14,11 @@ function addDot()
         document.getElementById('kw').appendChild(newDot);
         index++;
         newDot.textContent = index;
+
+        button = document.createElement('button');
+        button.textContent = "Usuń";
+        button.id = 'delete-button';
+        newDot.appendChild(button);
     }
 }
 

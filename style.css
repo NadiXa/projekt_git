@@ -92,9 +92,6 @@ header
 {
     background-color: grey;
     border-radius: 10%;
-    position: fixed;
-    right: 165px;
-    bottom: 10px;
     cursor: pointer;
     color: #121110;
 }
