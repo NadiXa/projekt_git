@@ -40,6 +40,7 @@ function addDot()
             const bigDot = document.getElementById(`newDot-${i}`);
             bigDot.style.backgroundColor = 'blue';
             bigDot.textContent = "BIG RED DOT";
+            newDot.appendChild(deleteButton);
         }
 
         newDot.appendChild(deleteButton);
