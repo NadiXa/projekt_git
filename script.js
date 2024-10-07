@@ -48,10 +48,3 @@ function addDot()
         dotContainer.appendChild(newDot);
     }
 }
-
-// function changeColor() 
-// {
-//     const bigDot = document.querySelector('.big-red-dot');
-//     bigDot.style.backgroundColor = 'blue';
-//     bigDot.textContent = "BIG RED DOT";
-// }
