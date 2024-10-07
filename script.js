@@ -19,14 +19,14 @@ function addDot()
 
 function changeColor() 
 {
-    const newDot = document.getElementsByClassName('big-red-dot');
-    newDot.style.backgroundColor = 'blue';
-    newDot.textContent = "BIG RED DOT";
+    const bigDot = document.querySelector('.big-red-dot');
+    bigDot.style.backgroundColor = 'blue';
+    bigDot.textContent = "BIG RED DOT";
 }
 
 function deleteDot()
 {
-    const bigDot = document.getElementsByClassName('big-red-dot');
+    const bigDot = document.querySelector('.big-red-dot');
 
     if(bigDot.style.backgroundColor == 'blue')
     {
