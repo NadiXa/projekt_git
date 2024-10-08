@@ -94,6 +94,17 @@ header
     color: #121110;
 }
 
+#show-button
+{
+    background-color: grey;
+    border-radius: 10%;
+    position: fixed;
+    right: 70px;
+    bottom: 10px;
+    cursor: pointer;
+    color: #121110;
+}
+
 footer
 {
     background-color: #505050;
