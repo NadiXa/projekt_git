@@ -51,7 +51,6 @@ function addDot()
 
 function showDots()
 {
-    let temp = document.getElementsByTagName("template")[0];
-    let clon = temp.content.cloneNode(true);
+    let clon = dotContainer.content.cloneNode(true);
     dotContainer.appendChild(clon);
 }
