@@ -5,29 +5,21 @@ const notes =
     {id: 3, note: 'ghi'}
 ];
 
-function createNoteTemplate(id, note)
-{
-    return {
-        id: id,
-        title: `Notatka ${id}`,
-        body: note,
-        createdAt: new Date().toISOString()
-    };
-}
-
 function addNote(notes)
 {
-    const cards = [];
-    
-    notes.forEach(element =>
+
+    const noteContainer = document.querySelector('.notes-container');
+
+    notes.forEach(element => 
     {
-        const content = createNoteTemplate(element.id, element.note);
-        cards.push(content);
+        const noteDiv = document.createElement('div');
+        noteDiv.classList.add('note');
+        noteDiv.textContent = `Notatka ${element.id}: ${element.note}`;
+
+        noteContainer.appendChild(noteDiv);
+
     });
 
-    return cards;
 }
 
-const cards = addNote(notes);
-
-console.log(cards);
+addNote(notes);
