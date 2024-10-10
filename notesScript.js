@@ -23,5 +23,3 @@ function addNote(notes)
 }
 
 addNote(notes);
-
-//test
