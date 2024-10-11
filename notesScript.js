@@ -20,6 +20,21 @@ function addNote(notes)
 
     });
 
+    for(let i=0; i<notes.id; i++)
+    {
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = "Usuń";
+    deleteButton.id = 'delete-button';
+    deleteButton.onclick = () =>
+    {
+        const newNote = document.getElementById(`noteDiv-${notes.id}`);
+        noteContainer.removeChild(newNote);
+    }
+    
+    newNote.appendChild(deleteButton);
+    }
+
 }
 
 addNote(notes);
