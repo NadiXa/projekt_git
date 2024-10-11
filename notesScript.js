@@ -5,7 +5,7 @@ const notes =
     {id: 3, note: 'ghi'}
 ];
 
-function addNote(notes)
+function renderNotesList()
 {
 
     const noteContainer = document.querySelector('.notes-container');
@@ -32,4 +32,4 @@ function addNote(notes)
 
 }
 
-addNote(notes);
+renderNotesList();
