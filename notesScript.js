@@ -5,7 +5,7 @@ const notes =
     {id: 3, note: 'ghi'}
 ];
 
-function addNote(notes)
+function renderNotesList()
 {
 
     const noteContainer = document.querySelector('.notes-container');
@@ -16,10 +16,20 @@ function addNote(notes)
         noteDiv.classList.add('note');
         noteDiv.textContent = `Notatka ${element.id}: ${element.note}`;
 
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Usuń';
+        deleteButton.id = 'delete-button';
+
+        deleteButton.addEventListener('click', function() {
+            noteDiv.remove();
+        });
+
+        noteDiv.appendChild(deleteButton);
+
         noteContainer.appendChild(noteDiv);
 
     });
 
 }
 
-addNote(notes);
+renderNotesList();
