@@ -1,3 +1,16 @@
+async function fetchNotes()
+{ 
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
+
+    if(!response.ok)
+    {
+        throw new Error(`Błąd HTTP: $response.status`);
+    }
+        
+    const notes = await response.json();
+    return notes.slice(0, 10);
+}
+
 async function renderNotesList()
 {
 
@@ -6,22 +19,9 @@ async function renderNotesList()
     try
     {
 
-        async function fetchNotes()
-        { 
-        const notes = await fetch('https://jsonplaceholder.typicode.com/posts');
+        const notes = await fetchNotes();
 
-        if(!notes.ok)
-        {
-            throw new Error(`Błąd HTTP: $notes.status`);
-        }
-        
-        const info = await notes.json();
-        return info.slice(0, 10);
-        }
-
-        const posts = await fetchNotes();
-
-        posts.forEach(post => {
+        notes.forEach(post => {
 
             const noteDiv = document.createElement('div');
             noteDiv.classList.add('note');
