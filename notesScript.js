@@ -5,7 +5,7 @@ const notes =
     {id: 3, note: 'ghi'}
 ];
 
-function addNote(notes)
+function renderNotesList()
 {
 
     const noteContainer = document.querySelector('.notes-container');
@@ -16,28 +16,23 @@ function addNote(notes)
         noteDiv.classList.add('note');
         noteDiv.textContent = `Notatka ${element.id}: ${element.note}`;
 
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'Usuń';
+        deleteButton.id = 'delete-button';
+
+        deleteButton.addEventListener('click', function() {
+            noteDiv.remove();
+        });
+
+        noteDiv.appendChild(deleteButton);
+
         noteContainer.appendChild(noteDiv);
 
     });
 
-    for(let i=0; i<notes.id; i++)
-    {
-
-    const deleteButton = document.createElement('button');
-    deleteButton.textContent = "Usuń";
-    deleteButton.id = 'delete-button';
-    deleteButton.onclick = () =>
-    {
-        const newNote = document.getElementById(`noteDiv-${notes.id}`);
-        noteContainer.removeChild(newNote);
-    }
-    
-    newNote.appendChild(deleteButton);
-    }
-
 }
 
-addNote(notes);
+renderNotesList();
 
 // async functions
 

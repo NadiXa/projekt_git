@@ -38,16 +38,6 @@ header
     top: 0;
 }
 
-#n2, #n4
-{
-    width: 100px;
-}
-
-#n3, #n5
-{
-    width: 150px;
-}
-
 .big-red-dot
 {
     width: 75px;
