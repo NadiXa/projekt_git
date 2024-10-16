@@ -1,10 +1,3 @@
-// const notes =
-// [
-//     {id: 1, note: 'abc'},
-//     {id: 2, note: 'def'},
-//     {id: 3, note: 'ghi'}
-// ];
-
 async function renderNotesList()
 {
 
@@ -13,6 +6,8 @@ async function renderNotesList()
     try
     {
 
+        async function fetchNotes()
+        { 
         const notes = await fetch('https://jsonplaceholder.typicode.com/posts');
 
         if(!notes.ok)
@@ -21,7 +16,10 @@ async function renderNotesList()
         }
         
         const info = await notes.json();
-        const posts = info.slice(0, 10);
+        return info.slice(0, 10);
+        }
+
+        const posts = await fetchNotes();
 
         posts.forEach(post => {
 
