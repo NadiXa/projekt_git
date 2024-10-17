@@ -1,34 +1,56 @@
-const notes =
-[
-    {id: 1, note: 'abc'},
-    {id: 2, note: 'def'},
-    {id: 3, note: 'ghi'}
-];
+async function fetchNotes()
+{ 
+    const response = await fetch('https://jsonplaceholder.typicode.com/posts');
 
-function renderNotesList()
+    if(!response.ok)
+    {
+        throw new Error(`Błąd HTTP: $response.status`);
+    }
+        
+    const notes = await response.json();
+    return notes.slice(0, 10);
+}
+
+function createNoteElement(post)
+{
+    const noteDiv = document.createElement('div');
+    noteDiv.classList.add('note');
+    noteDiv.textContent = `${post.id}: ${post.title}`;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Usuń';
+    deleteButton.id = 'delete-button';
+
+     deleteButton.addEventListener('click', function() {
+        noteDiv.remove();
+    });
+
+    noteDiv.appendChild(deleteButton);
+    return noteDiv;
+}
+
+async function renderNotesList()
 {
 
     const noteContainer = document.querySelector('.notes-container');
 
-    notes.forEach(element => 
+    try
     {
-        const noteDiv = document.createElement('div');
-        noteDiv.classList.add('note');
-        noteDiv.textContent = `Notatka ${element.id}: ${element.note}`;
 
-        const deleteButton = document.createElement('button');
-        deleteButton.textContent = 'Usuń';
-        deleteButton.id = 'delete-button';
+        const notes = await fetchNotes();
 
-        deleteButton.addEventListener('click', function() {
-            noteDiv.remove();
+        notes.forEach(post => {
+            const noteDiv = createNoteElement(post);
+            noteContainer.appendChild(noteDiv);
         });
 
-        noteDiv.appendChild(deleteButton);
-
-        noteContainer.appendChild(noteDiv);
-
-    });
+    } catch(error)
+    {
+        const errorDiv = document.createElement('div');
+        errorDiv.style.color = "red";
+        errorDiv.textContent = 'Wystąpił błąd!';
+        noteContainer.appendChild(errorDiv);
+    }
 
 }
 
