@@ -11,6 +11,24 @@ async function fetchNotes()
     return notes.slice(0, 10);
 }
 
+function createNoteElement(post)
+{
+    const noteDiv = document.createElement('div');
+    noteDiv.classList.add('note');
+    noteDiv.textContent = `${post.id}: ${post.title}`;
+
+    const deleteButton = document.createElement('button');
+    deleteButton.textContent = 'Usuń';
+    deleteButton.id = 'delete-button';
+
+     deleteButton.addEventListener('click', function() {
+        noteDiv.remove();
+    });
+
+    noteDiv.appendChild(deleteButton);
+    return noteDiv;
+}
+
 async function renderNotesList()
 {
 
@@ -22,20 +40,7 @@ async function renderNotesList()
         const notes = await fetchNotes();
 
         notes.forEach(post => {
-
-            const noteDiv = document.createElement('div');
-            noteDiv.classList.add('note');
-            noteDiv.textContent = `${post.id}: ${post.title}`;
-
-            const deleteButton = document.createElement('button');
-            deleteButton.textContent = 'Usuń';
-            deleteButton.id = 'delete-button';
-
-            deleteButton.addEventListener('click', function() {
-                noteDiv.remove();
-            });
-
-            noteDiv.appendChild(deleteButton);
+            const noteDiv = createNoteElement(post);
             noteContainer.appendChild(noteDiv);
         });
 
