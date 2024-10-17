@@ -103,13 +103,14 @@ header
     color: #121110;
 }
 
-#comment-container
+#comments-sidebar
 {
     background-color: rgba(1, 1, 1, 0.8);
     position: fixed;
     top: 10px;
     right: 10px;
     padding-top: 30px;
+    display: none;
 }
 
 .comment

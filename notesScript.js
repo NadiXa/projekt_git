@@ -1,3 +1,8 @@
+const closeCommentsButton = document.getElementById('close-comments-button');
+    closeCommentsButton.onclick = () => {
+        commentsSidebar.style.display = 'none';
+    }
+
 async function fetchNotes()
 { 
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -27,6 +32,11 @@ async function displayCommentsForNote(noteId)
 {
     fetchCommentsForNote(noteId);
     console.log(noteId);
+
+    const commentsSidebar = document.getElementById('comments-sidebar');
+    commentsSidebar.style.display = 'block';
+
+    
 }
 
 function createNoteElement(note)
