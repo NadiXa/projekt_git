@@ -36,6 +36,8 @@ function createNoteElement(post, comments)
         noteDiv.remove();
     });
 
+    //probably to seperate function
+
     const commentButton = document.createElement('button');
     commentButton.textContent = 'Pokaż komentarze';
     commentButton.id = 'comment-button';
@@ -60,9 +62,20 @@ function createNoteElement(post, comments)
         }
     });
 
+    const closeCommentsButton = document.createElement('button');
+    closeCommentsButton.textContent = 'x';
+    closeCommentsButton.id = 'close-comments-button';
+
+    closeCommentsButton.addEventListener('click', function() {
+        commentContainer.remove();
+    })
+
+    //////////////////////////////////////////////////////
+
     noteDiv.appendChild(deleteButton);
     noteDiv.appendChild(commentButton);
     noteDiv.appendChild(commentContainer);
+    commentContainer.appendChild(closeCommentsButton);
     return noteDiv;
 }
 
