@@ -11,7 +11,18 @@ async function fetchNotes()
     return notes.slice(0, 10);
 }
 
-function createNoteElement(post)
+async function fetchNotesComments() {
+    const response = await fetch('https://jsonplaceholder.typicode.com/comments');
+
+    if (!response.ok) {
+        throw new Error(`Błąd HTTP: ${response.status}`);
+    }
+
+    const comments = await response.json();
+    return comments.slice(0, 50);
+}
+
+function createNoteElement(post, comments)
 {
     const noteDiv = document.createElement('div');
     noteDiv.classList.add('note');
@@ -25,7 +36,33 @@ function createNoteElement(post)
         noteDiv.remove();
     });
 
+    const commentButton = document.createElement('button');
+    commentButton.textContent = 'Pokaż komentarze';
+    commentButton.id = 'comment-button';
+
+    const commentContainer = document.createElement('div');
+    commentContainer.id = 'comment-container';
+    commentContainer.style.display = 'none';
+
+    const postComments = comments.filter(comment => comment.postId === post.id);
+    postComments.forEach(comment => {
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+        commentDiv.textContent = `Komentarz ${comment.id}: ${comment.body}`;
+        commentContainer.appendChild(commentDiv);
+    });
+
+    commentButton.addEventListener('click', function() {
+        if (commentContainer.style.display === 'none') {
+            commentContainer.style.display = 'block';
+        } else {
+            commentContainer.style.display = 'none';
+        }
+    });
+
     noteDiv.appendChild(deleteButton);
+    noteDiv.appendChild(commentButton);
+    noteDiv.appendChild(commentContainer);
     return noteDiv;
 }
 
@@ -38,9 +75,10 @@ async function renderNotesList()
     {
 
         const notes = await fetchNotes();
+        const comments = await fetchNotesComments();
 
         notes.forEach(post => {
-            const noteDiv = createNoteElement(post);
+            const noteDiv = createNoteElement(post, comments);
             noteContainer.appendChild(noteDiv);
         });
 
