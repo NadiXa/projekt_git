@@ -1,7 +1,10 @@
+const commentsSidebar = document.getElementById('comments-sidebar');
 const closeCommentsButton = document.getElementById('close-comments-button');
     closeCommentsButton.onclick = () => {
         commentsSidebar.style.display = 'none';
     }
+
+const commentContainer = document.getElementById('comment-container');
 
 async function fetchNotes()
 { 
@@ -28,15 +31,26 @@ async function fetchCommentsForNote(noteId)
     return comments;
 }
 
+function clearComments()
+{
+    commentContainer.innerHTML = '';
+}
+
 async function displayCommentsForNote(noteId)
 {
-    fetchCommentsForNote(noteId);
-    console.log(noteId);
-
-    const commentsSidebar = document.getElementById('comments-sidebar');
+    
     commentsSidebar.style.display = 'block';
 
-    
+    clearComments();
+
+    const comments = await fetchCommentsForNote(noteId);
+
+    comments.forEach(comment => {
+        const commentDiv = document.createElement('div');
+        commentDiv.classList.add('comment');
+        commentDiv.textContent = `Komentarz ${comment.id}: ${comment.body}`;
+        commentContainer.appendChild(commentDiv);
+    });
 }
 
 function createNoteElement(note)
