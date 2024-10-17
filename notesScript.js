@@ -11,22 +11,29 @@ async function fetchNotes()
     return notes.slice(0, 10);
 }
 
-async function fetchNotesComments() {
-    const response = await fetch('https://jsonplaceholder.typicode.com/comments');
+async function fetchCommentsForNote(noteId)
+{
+    const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${noteId}`);
 
     if (!response.ok) {
-        throw new Error(`Błąd HTTP: ${response.status}`);
+        throw new Error(`HTTP Error: ${response.status}`);
     }
 
     const comments = await response.json();
-    return comments.slice(0, 50);
+    return comments;
 }
 
-function createNoteElement(post, comments)
+async function displayCommentsForNote(noteId)
+{
+    fetchCommentsForNote(noteId);
+    console.log(noteId);
+}
+
+function createNoteElement(note)
 {
     const noteDiv = document.createElement('div');
     noteDiv.classList.add('note');
-    noteDiv.textContent = `${post.id}: ${post.title}`;
+    noteDiv.textContent = `${note.id}: ${note.title}`;
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Usuń';
@@ -36,46 +43,16 @@ function createNoteElement(post, comments)
         noteDiv.remove();
     });
 
-    //probably to seperate function
-
     const commentButton = document.createElement('button');
     commentButton.textContent = 'Pokaż komentarze';
     commentButton.id = 'comment-button';
 
-    const commentContainer = document.createElement('div');
-    commentContainer.id = 'comment-container';
-    commentContainer.style.display = 'none';
-
-    const postComments = comments.filter(comment => comment.postId === post.id);
-    postComments.forEach(comment => {
-        const commentDiv = document.createElement('div');
-        commentDiv.classList.add('comment');
-        commentDiv.textContent = `Komentarz ${comment.id}: ${comment.body}`;
-        commentContainer.appendChild(commentDiv);
-    });
-
     commentButton.addEventListener('click', function() {
-        if (commentContainer.style.display === 'none') {
-            commentContainer.style.display = 'block';
-        } else {
-            commentContainer.style.display = 'none';
-        }
-    });
-
-    const closeCommentsButton = document.createElement('button');
-    closeCommentsButton.textContent = 'x';
-    closeCommentsButton.id = 'close-comments-button';
-
-    closeCommentsButton.addEventListener('click', function() {
-        commentContainer.remove();
-    })
-
-    //////////////////////////////////////////////////////
+        displayCommentsForNote(note.id);
+    })    
 
     noteDiv.appendChild(deleteButton);
     noteDiv.appendChild(commentButton);
-    noteDiv.appendChild(commentContainer);
-    commentContainer.appendChild(closeCommentsButton);
     return noteDiv;
 }
 
@@ -88,10 +65,9 @@ async function renderNotesList()
     {
 
         const notes = await fetchNotes();
-        const comments = await fetchNotesComments();
 
-        notes.forEach(post => {
-            const noteDiv = createNoteElement(post, comments);
+        notes.forEach(note => {
+            const noteDiv = createNoteElement(note);
             noteContainer.appendChild(noteDiv);
         });
 
