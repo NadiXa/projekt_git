@@ -76,14 +76,6 @@ header
     color: #121110;
 }
 
-#delete-button
-{
-    background-color: grey;
-    border-radius: 10%;
-    cursor: pointer;
-    color: #121110;
-}
-
 #show-button
 {
     background-color: grey;
@@ -93,6 +85,51 @@ header
     bottom: 10px;
     cursor: pointer;
     color: #121110;
+}
+
+#delete-button
+{
+    background-color: grey;
+    border-radius: 10%;
+    cursor: pointer;
+    color: #121110;
+}
+
+#comment-button
+{
+    background-color: grey;
+    border-radius: 10%;
+    cursor: pointer;
+    color: #121110;
+}
+
+#comments-sidebar
+{
+    background-color: rgba(1, 1, 1, 0.8);
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    padding-top: 30px;
+    display: none;
+}
+
+.comment
+{
+    color: #121110;
+    max-width: 300px;
+    padding: 10px;
+}
+
+#close-comments-button
+{
+    border-radius: 10%;
+    cursor: pointer;
+    color: #121110;
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    right: 10px;
+    top: 10px;
 }
 
 footer

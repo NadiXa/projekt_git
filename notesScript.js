@@ -1,3 +1,8 @@
+const closeCommentsButton = document.getElementById('close-comments-button');
+    closeCommentsButton.onclick = () => {
+        commentsSidebar.style.display = 'none';
+    }
+
 async function fetchNotes()
 { 
     const response = await fetch('https://jsonplaceholder.typicode.com/posts');
@@ -11,11 +16,34 @@ async function fetchNotes()
     return notes.slice(0, 10);
 }
 
-function createNoteElement(post)
+async function fetchCommentsForNote(noteId)
+{
+    const response = await fetch(`https://jsonplaceholder.typicode.com/comments?postId=${noteId}`);
+
+    if (!response.ok) {
+        throw new Error(`HTTP Error: ${response.status}`);
+    }
+
+    const comments = await response.json();
+    return comments;
+}
+
+async function displayCommentsForNote(noteId)
+{
+    fetchCommentsForNote(noteId);
+    console.log(noteId);
+
+    const commentsSidebar = document.getElementById('comments-sidebar');
+    commentsSidebar.style.display = 'block';
+
+    
+}
+
+function createNoteElement(note)
 {
     const noteDiv = document.createElement('div');
     noteDiv.classList.add('note');
-    noteDiv.textContent = `${post.id}: ${post.title}`;
+    noteDiv.textContent = `${note.id}: ${note.title}`;
 
     const deleteButton = document.createElement('button');
     deleteButton.textContent = 'Usuń';
@@ -25,7 +53,16 @@ function createNoteElement(post)
         noteDiv.remove();
     });
 
+    const commentButton = document.createElement('button');
+    commentButton.textContent = 'Pokaż komentarze';
+    commentButton.id = 'comment-button';
+
+    commentButton.addEventListener('click', function() {
+        displayCommentsForNote(note.id);
+    })    
+
     noteDiv.appendChild(deleteButton);
+    noteDiv.appendChild(commentButton);
     return noteDiv;
 }
 
@@ -39,8 +76,8 @@ async function renderNotesList()
 
         const notes = await fetchNotes();
 
-        notes.forEach(post => {
-            const noteDiv = createNoteElement(post);
+        notes.forEach(note => {
+            const noteDiv = createNoteElement(note);
             noteContainer.appendChild(noteDiv);
         });
 
