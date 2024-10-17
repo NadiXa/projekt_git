@@ -121,7 +121,6 @@ header
 
 #close-comments-button
 {
-    background-color: rgba(128, 128, 128, 0.8);
     border-radius: 10%;
     cursor: pointer;
     color: #121110;
